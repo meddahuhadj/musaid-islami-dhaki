@@ -897,6 +897,102 @@
     .setting-card .setting-info { flex: 1; }
     .setting-card .setting-label { font-size: 0.85rem; color: var(--text-primary); font-weight: 600; }
     .setting-card .setting-desc { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem; }
+
+    /* QIBLA COMPASS */
+    .qibla-container { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .compass {
+      position: relative; width: 220px; height: 220px; border-radius: 50%;
+      border: 3px solid var(--border-gold); background:
+        conic-gradient(from 0deg, rgba(212,168,83,0.08) 0deg 90deg, rgba(0,0,0,0.25) 90deg 180deg, rgba(212,168,83,0.08) 180deg 270deg, rgba(0,0,0,0.25) 270deg 360deg);
+      box-shadow: 0 0 25px rgba(212,168,83,0.2), inset 0 0 20px rgba(0,0,0,0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .compass .compass-ring { position: absolute; inset: 8px; border-radius: 50%; border: 1px dashed rgba(212,168,83,0.35); }
+    .compass .qibla-needle {
+      width: 4px; height: 88px; background: linear-gradient(to top, var(--accent-emerald), #fff);
+      border-radius: 4px; transform-origin: 50% 100%;
+      position: relative; z-index: 3;
+      transition: transform 0.4s ease-out;
+      box-shadow: 0 0 10px rgba(26,188,156,0.6);
+    }
+    .compass .qibla-needle::before {
+      content: ''; position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent;
+      border-bottom: 14px solid var(--accent-emerald);
+    }
+    .compass .compass-n {
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      color: #ef4444; font-weight: 900; font-size: 1.1rem; z-index: 2;
+    }
+    .compass .compass-center { position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-gold); z-index: 4; }
+    .compass-ticklines { position: absolute; inset: 12px; border-radius: 50%; }
+    .compass-ticklines span {
+      position: absolute; left: 50%; top: 50%; font-size: 0.6rem; color: var(--text-muted);
+      transform-origin: 0 0; transform: rotate(calc(var(--a) * 1deg)) translateY(-108px);
+    }
+    .qibla-info-card {
+      background: rgba(0,0,0,0.2); border: 1px solid var(--border-gold); border-radius: 0.75rem;
+      padding: 1rem; text-align: center; width: 100%; max-width: 360px;
+    }
+    .qibla-info-card strong { color: var(--accent-gold); font-size: 1.4rem; }
+    .qibla-hint { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem; }
+    .qibla-btn {
+      padding: 0.7rem 1.6rem; border: 1px solid var(--accent-emerald); border-radius: 2rem;
+      background: rgba(26,188,156,0.12); color: var(--accent-emerald); font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem; cursor: pointer; transition: all 0.3s;
+    }
+    .qibla-btn:hover { background: rgba(26,188,156,0.25); }
+    .qibla-btn:disabled { opacity: 0.5; cursor: wait; }
+
+    /* HIJRI CONVERTER */
+    .converter-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;
+    }
+    @media (max-width: 560px) { .converter-grid { grid-template-columns: 1fr; } }
+    .converter-col {
+      background: rgba(0,0,0,0.2); border: 1px solid var(--border-gold); border-radius: 0.75rem; padding: 1rem;
+    }
+    .converter-col h3 { color: var(--accent-gold); font-size: 0.95rem; margin-bottom: 0.6rem; text-align: center; font-family: 'Amiri', serif; }
+    .converter-col label { font-size: 0.7rem; color: var(--text-muted); display: block; margin: 0.4rem 0 0.2rem; }
+    .converter-col select, .converter-col input[type="number"] {
+      width: 100%; padding: 0.5rem 0.6rem; background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border-gold); border-radius: 0.5rem; color: var(--text-primary);
+      font-family: 'Cairo', sans-serif; font-size: 0.8rem; outline: none;
+    }
+    .convert-result {
+      margin-top: 0.9rem; text-align: center; font-family: 'Amiri', serif; font-size: 1.15rem;
+      color: var(--accent-emerald); min-height: 1.6rem; line-height: 1.5;
+    }
+    .convert-actions { display: flex; gap: 0.5rem; justify-content: center; margin-top: 0.8rem; flex-wrap: wrap; }
+
+    /* QUIZ */
+    .quiz-box { max-width: 560px; margin: 0 auto; text-align: center; }
+    .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .quiz-progress { height: 6px; background: rgba(0,0,0,0.3); border-radius: 3px; overflow: hidden; margin-bottom: 1rem; }
+    .quiz-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent-emerald), var(--accent-gold)); width: 0%; transition: width 0.3s; }
+    .quiz-question { font-family: 'Amiri', serif; font-size: 1.25rem; color: var(--text-primary); margin-bottom: 1.2rem; min-height: 3.4rem; }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+    .quiz-option {
+      padding: 0.8rem 1rem; background: rgba(0,0,0,0.2); border: 1px solid var(--border-gold);
+      border-radius: 0.7rem; color: var(--text-secondary); font-family: 'Cairo', sans-serif;
+      font-size: 0.85rem; cursor: pointer; transition: all 0.25s; text-align: right;
+    }
+    .quiz-option:hover:not(:disabled) { border-color: var(--accent-gold); color: var(--accent-gold); }
+    .quiz-option.correct { background: rgba(26,188,156,0.25); border-color: var(--accent-emerald); color: #d1fae5; }
+    .quiz-option.wrong { background: rgba(239,68,68,0.25); border-color: #ef4444; color: #fecaca; }
+    .quiz-option:disabled { cursor: not-allowed; opacity: 0.7; }
+    .quiz-feedback { min-height: 2.2rem; margin-top: 0.9rem; font-size: 0.9rem; }
+    .quiz-score-box {
+      padding: 2rem 1rem; border: 1px solid var(--accent-gold); border-radius: 1rem;
+      background: rgba(212,168,83,0.08);
+    }
+    .quiz-score-box .big-score { font-size: 3rem; font-weight: 900; color: var(--accent-gold); }
+    .restart-btn {
+      padding: 0.6rem 1.4rem; border: 1px solid var(--accent-gold); border-radius: 2rem;
+      background: rgba(212,168,83,0.12); color: var(--accent-gold); font-family: 'Cairo', sans-serif;
+      font-size: 0.8rem; cursor: pointer; margin-top: 1rem; transition: all 0.3s;
+    }
+    .restart-btn:hover { background: rgba(212,168,83,0.25); }
   </style>
 </head>
 <body>
@@ -1011,6 +1107,9 @@
       <button class="section-tab" onclick="showSection('quran')">📜 المصحف</button>
       <button class="section-tab" onclick="showSection('zakat')">💰 الزكاة</button>
       <button class="section-tab" onclick="showSection('prayer-alerts')">🕌 أوقات الصلاة</button>
+      <button class="section-tab" onclick="showSection('qibla')">🧭 القبلة</button>
+      <button class="section-tab" onclick="showSection('hijri-date')">📅 التاريخ</button>
+      <button class="section-tab" onclick="showSection('quiz')">🎯 المسابقة</button>
       <button class="section-tab" onclick="showSection('istikhara')">🌙 الاستخارة</button>
       <button class="section-tab" onclick="showSection('ramadan')">🕌 رمضان</button>
       <button class="section-tab" onclick="showSection('settings')">⚙️ الإعدادات</button>
@@ -1140,6 +1239,71 @@
           <button class="dua-cat-btn" onclick="showDuaCategory('mistake', this)">⚠️ النسيان</button>
         </div>
         <div class="dua-list" id="duaList"></div>
+      </div>
+
+      <!-- QIBLA Section -->
+      <div class="feature-panel" id="section-qibla">
+        <h2>🧭 اتجاه القبلة</h2>
+        <div class="qibla-container">
+          <div class="compass" id="qiblaCompass">
+            <div class="compass-ring"></div>
+            <div class="compass-n">N</div>
+            <div class="compass-ticklines">
+              <span style="--a:0">0</span><span style="--a:45">45</span>
+              <span style="--a:90">90</span><span style="--a:135">135</span>
+              <span style="--a:180">180</span><span style="--a:225">225</span>
+              <span style="--a:270">270</span><span style="--a:315">315</span>
+            </div>
+            <div class="qibla-needle" id="qiblaNeedle"></div>
+            <div class="compass-center"></div>
+          </div>
+          <div class="qibla-info-card">
+            <div id="qiblaBearing" style="min-height:1rem;">📍 جاري طلب موقعك...</div>
+            <div id="qiblaDistance" style="font-size:0.8rem; color:var(--text-muted); margin-top:0.3rem;"></div>
+            <div class="qibla-hint" id="qiblaHint">ضع جهازك على سطح مستوٍ وأدر نفسك حتى يصطفّ المؤشر الأخضر نحو الأمام</div>
+          </div>
+          <button class="qibla-btn" id="qiblaLocateBtn" onclick="locateQibla()">🎯 تحدّيد موقعي</button>
+        </div>
+      </div>
+
+      <!-- HIJRI DATE CONVERTER -->
+      <div class="feature-panel" id="section-hijri-date">
+        <h2>📅 التحويل الهجري ↔ الميلادي</h2>
+        <div class="converter-grid">
+          <div class="converter-col">
+            <h3>ميلادي → هجري</h3>
+            <label>اليوم</label>
+            <input type="number" id="hijriDay" min="1" max="31" value="13">
+            <label>الشهر</label>
+            <select id="hijriMonth"></select>
+            <label>السنة</label>
+            <input type="number" id="hijriYear" min="1900" max="2200" value="2026">
+            <div class="convert-result" id="gregToHijriResult"></div>
+            <div class="convert-actions">
+              <button class="qibla-btn" onclick="convertGregToHijri()">⇅ تحويل</button>
+            </div>
+          </div>
+          <div class="converter-col">
+            <h3>هجري → ميلادي</h3>
+            <label>اليوم</label>
+            <input type="number" id="gregDay" min="1" max="30" value="1">
+            <label>الشهر</label>
+            <select id="gregMonth"></select>
+            <label>السنة</label>
+            <input type="number" id="gregYear" min="1400" max="1500" value="1448">
+            <div class="convert-result" id="hijriToGregResult"></div>
+            <div class="convert-actions">
+              <button class="qibla-btn" onclick="convertHijriToGreg()">⇅ تحويل</button>
+              <button class="qibla-btn" style="border-color:var(--accent-gold);color:var(--accent-gold);" onclick="useTodayHijri()">📆 اليوم</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ISLAMIC QUIZ -->
+      <div class="feature-panel" id="section-quiz">
+        <h2>🎯 المسابقة الإسلامية</h2>
+        <div class="quiz-box" id="quizBox"></div>
       </div>
 
       <!-- QURAN BROWSER Section -->
@@ -2547,6 +2711,9 @@ Remember: You're having a natural conversation, not giving a lecture. Be human, 
       if (section === 'ramadan') renderRamadan();
       if (section === 'prayer-alerts') loadPrayerAlerts();
       if (section === 'quran') renderSurahGrid();
+      if (section === 'quiz') renderQuiz();
+      if (section === 'hijri-date') populateConverterSelects();
+      if (section === 'qibla') { if (!qiblaPosition) locateQibla(); else runQiblaCompass(); }
       if (section === 'settings') loadSettings();
     };
 
@@ -3050,6 +3217,232 @@ Remember: You're having a natural conversation, not giving a lecture. Be human, 
       if (!tasbihState.dhikrSound) document.querySelector('#clickSoundToggle')?.classList.remove('active');
       if (!tasbihState.vibration) document.querySelector('#vibrationToggle')?.classList.remove('active');
     }
+
+    // =====================================================================
+    // === ENRICHMENT: QIBLA COMPASS + HIJRI CONVERTER + ISLAMIC QUIZ ===
+    // =====================================================================
+
+    // ---- QIBLA ----
+    let qiblaPosition = null;
+    let qiblaDeviceHeading = null;
+
+    async function getUserPosition() {
+      if (!navigator.geolocation) throw new Error('geolocation-unsupported');
+      return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000, maximumAge: 600000, enableHighAccuracy: false }));
+    }
+
+    function distanceHaversineKm(lat1, lon1, lat2, lon2) {
+      const R = 6371.0088, toRad = (d) => d * Math.PI / 180;
+      const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+      const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function runQiblaCompass() {
+      const bearing = qiblaPosition ? computeQiblaBearing(qiblaPosition.coords.latitude, qiblaPosition.coords.longitude) : null;
+      const needle = document.getElementById('qiblaNeedle');
+      if (!needle) return;
+      if (bearing === null) { needle.style.transform = 'rotate(0deg)'; return; }
+      const heading = qiblaDeviceHeading != null ? qiblaDeviceHeading : 0;
+      const angle = bearing - heading; // rotate needle relative to device heading
+      needle.style.transform = `rotate(${angle}deg)`;
+    }
+
+    window.locateQibla = async () => {
+      const btn = document.getElementById('qiblaLocateBtn');
+      const bearingEl = document.getElementById('qiblaBearing');
+      const distEl = document.getElementById('qiblaDistance');
+      if (btn) { btn.disabled = true; btn.textContent = '⏳ جاري تحديد الموقع...'; }
+      try {
+        const pos = await getUserPosition();
+        qiblaPosition = pos;
+        const bearing = computeQiblaBearing(pos.coords.latitude, pos.coords.longitude);
+        const deg = Math.round(bearing);
+        const dir = bearingToCompass(bearing, 'ar');
+        const km = distanceHaversineKm(pos.coords.latitude, pos.coords.longitude, KAABA_LAT, KAABA_LON);
+        if (bearingEl) bearingEl.innerHTML = `🧭 اتجاه القبلة: <strong>${deg}°</strong> (نحو ${dir})`;
+        if (distEl) distEl.textContent = `📏 المسافة إلى الكعبة: ${Math.round(km).toLocaleString()} كم`;
+        runQiblaCompass();
+        showToast('تم تحديد اتجاه القبلة ✅');
+      } catch (e) {
+        if (bearingEl) bearingEl.textContent = '❌ تعذر تحديد موقعك. تفقّد أذن تحديد الموقع في المتصفح';
+        showToast('تعذر تحديد الموقع الجغرافي', true);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = '🎯 تحدّيد موقعي'; }
+      }
+    };
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientationabsolute', (e) => {
+        if (e.absolute || e.webkitCompassHeading !== undefined) {
+          qiblaDeviceHeading = e.webkitCompassHeading !== undefined ? e.webkitCompassHeading : e.alpha;
+          runQiblaCompass();
+        }
+      }, true);
+      window.addEventListener('deviceorientation', (e) => {
+        if (qiblaDeviceHeading == null && e.alpha != null) {
+          qiblaDeviceHeading = e.alpha;
+          runQiblaCompass();
+        }
+      }, true);
+    }
+
+    // ---- HIJRI / GREGORIAN CONVERTER ----
+    const HIJRI_MONTHS_AR = ['محرم', 'صفر', 'ربيع الأول', 'ربيع الآخر', 'جمادى الأولى', 'جمادى الآخرة', 'رجب', 'شعبان', 'رمضان', 'شوال', 'ذو القعدة', 'ذو الحجة'];
+    const GREG_MONTHS_AR = ['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر'];
+    let hijriUmalquraFmt = null;
+
+    function umalquraParts(date) {
+      try {
+        if (!hijriUmalquraFmt) hijriUmalquraFmt = new Intl.DateTimeFormat('en-u-ca-islamic-umalqura', { year: 'numeric', month: 'numeric', day: 'numeric' });
+        const parts = hijriUmalquraFmt.formatToParts(date);
+        const get = (t) => { const p = parts.find(x => x.type === t); return p ? parseInt(p.value, 10) : NaN; };
+        return { year: get('year'), month: get('month'), day: get('day') };
+      } catch (e) { return null; }
+    }
+
+    function populateConverterSelects() {
+      const hm = document.getElementById('hijriMonth');
+      const gm = document.getElementById('gregMonth');
+      if (hm && !hm.options.length) HIJRI_MONTHS_AR.forEach((m, i) => hm.add(new Option(m, i + 1)));
+      if (gm && !gm.options.length) GREG_MONTHS_AR.forEach((m, i) => gm.add(new Option(m, i + 1)));
+      const today = umalquraParts(new Date());
+      if (today && today.day) {
+        const dd = document.getElementById('gregDay');
+        const gm2 = document.getElementById('gregMonth');
+        const gy = document.getElementById('gregYear');
+        if (dd) dd.value = today.day;
+        if (gm2) gm2.value = today.month;
+        if (gy) gy.value = today.year;
+      }
+    }
+
+    window.convertGregToHijri = () => {
+      const d = parseInt(document.getElementById('hijriDay').value, 10);
+      const m = parseInt(document.getElementById('hijriMonth').value, 10);
+      const y = parseInt(document.getElementById('hijriYear').value, 10);
+      const out = document.getElementById('gregToHijriResult');
+      if (!d || !m || !y || d < 1 || d > 31 || m < 1 || m > 12) { out.textContent = '❌ أدخل تاريخاً صحيحاً'; return; }
+      const date = new Date(y, m - 1, d);
+      const h = umalquraParts(date);
+      if (!h || !h.year) { out.textContent = '❌ التاريخ خارج نطاق التقويم الهجري'; return; }
+      out.textContent = `${h.day} ${HIJRI_MONTHS_AR[h.month - 1] || ''} ${h.year} هـ`;
+    };
+
+    window.convertHijriToGreg = () => {
+      const d = parseInt(document.getElementById('gregDay').value, 10);
+      const m = parseInt(document.getElementById('gregMonth').value, 10);
+      const y = parseInt(document.getElementById('gregYear').value, 10);
+      const out = document.getElementById('hijriToGregResult');
+      if (!d || !m || !y || d < 1 || d > 30 || m < 1 || m > 12) { out.textContent = '❌ أدخل تاريخاً صحيحاً'; return; }
+      // approximate: 1 Muharram 1440 = 2018-09-11
+      const days = (y - 1440) * 354.367 + (m - 1) * 29.5306 + (d - 1);
+      const approx = new Date(Date.UTC(2018, 8, 11) + days * 86400000);
+      for (let off = -6; off <= 6; off++) {
+        const cand = new Date(approx.getTime() + off * 86400000);
+        const h = umalquraParts(cand);
+        if (h && h.year === y && h.month === m && h.day === d) {
+          out.textContent = `${cand.getDate()} ${GREG_MONTHS_AR[cand.getMonth()]} ${cand.getFullYear()} م`;
+          return;
+        }
+      }
+      out.textContent = '❌ لم يُعثر على تطابق (التاريخ قد يكون غير صحيح أو خارج النطاق)';
+    };
+
+    window.useTodayHijri = () => {
+      const t = new Date();
+      document.getElementById('hijriDay').value = t.getDate();
+      document.getElementById('hijriMonth').value = t.getMonth() + 1;
+      document.getElementById('hijriYear').value = t.getFullYear();
+      const h = umalquraParts(t);
+      if (h && h.year) {
+        document.getElementById('gregToHijriResult').textContent = `${h.day} ${HIJRI_MONTHS_AR[h.month - 1] || ''} ${h.year} هـ`;
+      }
+      showToast('📆 تم ضبط تاريخ اليوم');
+    };
+
+    // ---- ISLAMIC QUIZ ----
+    const QUIZ_QUESTIONS = [
+      { qAr: 'كم عدد سور القرآن الكريم؟', options: ['100', '114', '120', '110'], correct: 1 },
+      { qAr: 'كم عدد أركان الإسلام؟', options: ['3', '4', '5', '6'], correct: 2 },
+      { qAr: 'ما هي السورة الملقبة بـ"القلب"؟', options: ['البقرة', 'يس', 'الفاتحة', 'الإخلاص'], correct: 1 },
+      { qAr: 'في أي ليلة أُنزل القرآن؟', options: ['ليلة الجمعة', 'ليلة الإسراء', 'ليلة القدر', 'ليلة المولد'], correct: 2 },
+      { qAr: 'من هو النبي الملقّب بـ"أبي الأنبياء"؟', options: ['نوح عليه السلام', 'إبراهيم عليه السلام', 'آدم عليه السلام', 'موسى عليه السلام'], correct: 1 },
+      { qAr: 'ما هو أول مسجد بُني في الإسلام؟', options: ['المسجد النبوي', 'المسجد الحرام', 'مسجد قباء', 'المسجد الأقصى'], correct: 2 },
+      { qAr: 'كم سنة دام الوحي في مكة قبل الهجرة؟', options: ['10', '13', '15', '20'], correct: 1 },
+      { qAr: 'ما هي السورة التي لا تبدأ بالبسملة؟', options: ['النمل', 'الفاتحة', 'التوبة', 'النساء'], correct: 2 },
+      { qAr: 'ما هو الحيوان الذي خاطب الله بني إسرائيل به؟', options: ['الكلب', 'البقرة', 'القطة', 'الحمار'], correct: 1 },
+      { qAr: 'كم عدد الصلوات الخمس المفروضة في اليوم؟', options: ['3', '4', '5', '7'], correct: 2 },
+      { qAr: 'ما هو أول ما يُحاسب عليه العبد يوم القيامة؟', options: ['الصلاة', 'الصيام', 'الزكاة', 'الحج'], correct: 0 },
+      { qAr: 'من هو كاتب الوحي الأول للرسول ﷺ؟', options: ['عمر بن الخطاب', 'علي بن أبي طالب', 'أبو بكر الصديق', 'عثمان بن عفان'], correct: 2 },
+      { qAr: 'ما هو الطهور المفقود عند عدم وجود الماء؟', options: ['التراب', 'الحجر', 'الرمل البحري', 'الخشب'], correct: 0 },
+      { qAr: 'كم عدد أجزاء القرآن الكريم؟', options: ['20', '30', '10', '60'], correct: 1 },
+      { qAr: 'ما هي أعظم آية في القرآن؟', options: ['آية النور', 'آية الكرسي', 'آية الدين', 'آية الميراث'], correct: 1 },
+      { qAr: 'من هو الصحابي الملقب بـ"أمين الأمة"؟', options: ['أبو بكر', 'عمر', 'أبو عبيدة بن الجراح', 'سعد بن أبي وقاص'], correct: 2 },
+      { qAr: 'ما هي لغة أهل الجنة؟', options: ['العربية', 'العبرية', 'السريانية', 'الفارسية'], correct: 0 },
+      { qAr: 'كم عدد الركعات في صلاة الفجر؟', options: ['2', '3', '4', '5'], correct: 0 },
+      { qAr: 'ما هو اسم أم الرسول ﷺ؟', options: ['حليمة', 'آمنة', 'فاطمة', 'خديجة'], correct: 1 },
+      { qAr: 'ما هو الحيوان الذي حرم الله لباس شعره في الحديث؟', options: ['الإبل', 'الشاة', 'الكلب', 'القط'], correct: 2 },
+      { qAr: 'في أي سورة وردت آية الكرسي؟', options: ['آل عمران', 'البقرة', 'النساء', 'المائدة'], correct: 1 },
+      { qAr: 'من هو النبي الذي ابتلعه الحوت؟', options: ['يونس', 'يوسف', 'داوود', 'إلياس'], correct: 0 },
+      { qAr: 'ما أول ما يُقضى بين الناس يوم القيامة (من حقوق الدم)؟', options: ['المال', 'الديون', 'تسوية الدماء', 'الأنفس'], correct: 2 },
+      { qAr: 'كم عدد أسماء الله الحسنى؟', options: ['99', '100', '90', '120'], correct: 0 }
+    ];
+    let quizIndex = 0, quizScore = 0, quizAnswered = 0;
+
+    function renderQuiz() {
+      const box = document.getElementById('quizBox');
+      if (!box) return;
+      if (quizIndex >= QUIZ_QUESTIONS.length) {
+        const pct = Math.round((quizScore / QUIZ_QUESTIONS.length) * 100);
+        const msg = pct >= 80 ? '🌙 ممتاز! بارك الله فيك' : pct >= 50 ? '🌟 جيد، واصل التدريب' : '💪 لا بأس، حاول مرة أخرى';
+        box.innerHTML = `
+          <div class="quiz-score-box">
+            <div class="big-score">${quizScore}/${QUIZ_QUESTIONS.length}</div>
+            <div style="color:var(--text-secondary); font-size:1rem;">${msg}</div>
+            <div style="color:var(--text-muted); font-size:0.8rem; margin-top:0.3rem;">النسبة: ${pct}%</div>
+            <br>
+            <button class="restart-btn" onclick="restartQuiz()">🔄 إعادة المسابقة</button>
+          </div>`;
+        return;
+      }
+      const q = QUIZ_QUESTIONS[quizIndex];
+      box.innerHTML = `
+        <div class="quiz-header">
+          <span>السؤال ${quizIndex + 1} / ${QUIZ_QUESTIONS.length}</span>
+          <span>🏆 النقاط: ${quizScore}</span>
+        </div>
+        <div class="quiz-progress"><div class="quiz-progress-fill" style="width:${((quizIndex + (quizAnswered ? 1 : 0)) / QUIZ_QUESTIONS.length) * 100}%"></div></div>
+        <div class="quiz-question">${q.qAr}</div>
+        <div class="quiz-options">
+          ${q.options.map((op, i) => `<button class="quiz-option" onclick="answerQuiz(${i})">${op}</button>`).join('')}
+        </div>
+        <div class="quiz-feedback" id="quizFeedback"></div>`;
+    }
+
+    window.answerQuiz = (idx) => {
+      if (quizAnswered === quizIndex + 1) return;
+      const q = QUIZ_QUESTIONS[quizIndex];
+      const btns = document.querySelectorAll('.quiz-option');
+      const fb = document.getElementById('quizFeedback');
+      btns.forEach(b => b.disabled = true);
+      const correct = q.correct === idx;
+      btns[idx].classList.add(correct ? 'correct' : 'wrong');
+      btns[q.correct].classList.add('correct');
+      if (correct) quizScore++;
+      if (fb) {
+        fb.style.color = correct ? 'var(--accent-emerald)' : '#ef4444';
+        fb.textContent = correct ? '✅ إجابة صحيحة، أحسنت!' : '❌ الإجابة الصحيحة: ' + q.options[q.correct];
+      }
+      quizAnswered = quizIndex + 1;
+      setTimeout(() => {
+        quizAnswered = 0;
+        quizIndex++;
+        renderQuiz();
+      }, 1800);
+    };
+
+    window.restartQuiz = () => { quizIndex = 0; quizScore = 0; quizAnswered = 0; renderQuiz(); };
 
     // =====================================================================
     // === ENRICHMENT: COUNTDOWN TO NEXT PRAYER + ADHAN ===
